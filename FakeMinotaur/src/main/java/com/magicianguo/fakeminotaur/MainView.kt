@@ -16,12 +16,23 @@ class MainView @JvmOverloads constructor(
     private val mRotateAnimator = ValueAnimator().apply {
         setFloatValues(-30F, 330F)
         repeatCount = ValueAnimator.INFINITE
-        duration = 30 * 1000L
+        duration = 24 * 1000L
         interpolator = LinearInterpolator()
     }
 
     private val mRotateListener = ValueAnimator.AnimatorUpdateListener { animator ->
         onRotateUpdate(animator)
+    }
+
+    private val mScaleAnimator = ValueAnimator().apply {
+        setFloatValues(1F, 0.6F, 1F)
+        repeatCount = ValueAnimator.INFINITE
+        duration = 20 * 1000L
+        interpolator = LinearInterpolator()
+    }
+
+    private val mScaleListener = ValueAnimator.AnimatorUpdateListener { animator ->
+        onScaleUpdate(animator)
     }
 
     init {
@@ -35,10 +46,20 @@ class MainView @JvmOverloads constructor(
         }, 2000L)
         mRotateAnimator.addUpdateListener(mRotateListener)
         mRotateAnimator.start()
+        postDelayed({
+            mScaleAnimator.addUpdateListener(mScaleListener)
+            mScaleAnimator.start()
+        }, 4000L)
     }
 
     private fun onRotateUpdate(animator: ValueAnimator) {
         val angle = animator.animatedValue as Float
         mTvMain.rotation = angle
+    }
+
+    private fun onScaleUpdate(animator: ValueAnimator) {
+        val scale = animator.animatedValue as Float
+        mTvMain.scaleX = scale
+        mTvMain.scaleY = scale
     }
 }
