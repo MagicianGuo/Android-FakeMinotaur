@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontoptimize
+-keep class com.magicianguo.fakeminotaur.bean.BeanText { *; }
+-keep class com.google.gson.** { *; }
+-keepattributes Signature
+-keepnames class * extends com.google.gson.reflect.TypeToken
