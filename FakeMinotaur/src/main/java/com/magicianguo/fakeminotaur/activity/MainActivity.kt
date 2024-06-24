@@ -2,7 +2,6 @@ package com.magicianguo.fakeminotaur.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.magicianguo.fakeminotaur.R
 import com.magicianguo.fakeminotaur.view.MainView
@@ -11,6 +10,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mMainView: MainView
     private var mClickCount = 0
     private var mLastClickTime = 0L
+    private val mTextChangeListener = object : MainView.ITextChangeListener {
+        override fun notifyTextChange(text: String) {
+            mMainView.setText(text)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,5 +32,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, SettingActivity::class.java))
             }
         }
+        MainView.register(mTextChangeListener)
+    }
+
+    override fun onDestroy() {
+        MainView.unregister(mTextChangeListener)
+        super.onDestroy()
     }
 }

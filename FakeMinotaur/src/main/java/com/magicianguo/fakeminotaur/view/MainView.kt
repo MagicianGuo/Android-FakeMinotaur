@@ -9,6 +9,7 @@ import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.magicianguo.fakeminotaur.R
+import com.magicianguo.fakeminotaur.util.SPUtils
 
 class MainView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -43,7 +44,7 @@ class MainView @JvmOverloads constructor(
         mTvMain.setTypeface(Typeface.createFromAsset(context.assets, "JetBrainsMono-Bold.ttf"))
         mTvMain.text = "Loading..."
         postDelayed({
-            mTvMain.text = "Sad Minotaur -25-\nConventional Tests (8)"
+            mTvMain.text = getShowString()
         }, 2000L)
         mRotateAnimator.addUpdateListener(mRotateListener)
         mRotateAnimator.start()
@@ -51,6 +52,20 @@ class MainView @JvmOverloads constructor(
             mScaleAnimator.addUpdateListener(mScaleListener)
             mScaleAnimator.start()
         }, 4000L)
+    }
+
+    private fun getShowString(): String {
+        val textList = SPUtils.getTextList()
+        textList.forEach { bt ->
+            if (bt.selected) {
+                return bt.text
+            }
+        }
+        return "Sad Minotaur -25-\nConventional Tests (8)"
+    }
+
+    fun setText(text: String) {
+        mTvMain.text = text
     }
 
     private fun onRotateUpdate(animator: ValueAnimator) {
@@ -62,5 +77,26 @@ class MainView @JvmOverloads constructor(
         val scale = animator.animatedValue as Float
         mTvMain.scaleX = scale
         mTvMain.scaleY = scale
+    }
+
+    companion object {
+        private val mTextListeners = mutableListOf<ITextChangeListener>()
+        fun register(listener: ITextChangeListener) {
+            mTextListeners.add(listener)
+        }
+
+        fun unregister(listener: ITextChangeListener) {
+            mTextListeners.remove(listener)
+        }
+
+        fun notifyTextChange(text: String) {
+            mTextListeners.forEach {
+                it.notifyTextChange(text)
+            }
+        }
+    }
+
+    interface ITextChangeListener {
+        fun notifyTextChange(text: String)
     }
 }

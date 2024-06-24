@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FakeMinotaur" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/main_background</item>
         <item name="android:statusBarColor">@color/main_background</item>
         <item name="android:navigationBarColor">@color/main_background</item>
         <item name="android:windowLightNavigationBar">true</item>
