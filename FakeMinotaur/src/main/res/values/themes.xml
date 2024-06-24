@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <item name="android:statusBarColor">@color/main_background</item>
         <item name="android:navigationBarColor">@color/main_background</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="Theme.FakeMinotaur" parent="Base.Theme.FakeMinotaur" />

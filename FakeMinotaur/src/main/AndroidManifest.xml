@@ -11,7 +11,10 @@
         android:theme="@style/Theme.FakeMinotaur"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>

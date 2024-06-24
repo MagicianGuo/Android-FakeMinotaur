@@ -1,4 +1,4 @@
-package com.magicianguo.fakeminotaur
+package com.magicianguo.fakeminotaur.view
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.magicianguo.fakeminotaur.R
 
 class MainView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
