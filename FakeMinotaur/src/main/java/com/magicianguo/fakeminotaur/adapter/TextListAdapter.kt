@@ -65,8 +65,12 @@ class TextListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         holder.etText.isEnabled = false
                         holder.btnEdit.text = "编辑"
                         holder.btnSelect.isVisible = true
-                        beanText.text = holder.etText.text.toString()
+                        val savedText = holder.etText.text.toString()
+                        beanText.text = savedText
                         SPUtils.setTextList(mData)
+                        if (beanText.selected) {
+                            MainView.notifyTextChange(savedText)
+                        }
                         notifyItemChanged(position)
                     } else {
                         holder.etText.isEnabled = true
