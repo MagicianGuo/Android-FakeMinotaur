@@ -61,7 +61,7 @@ class MainView @JvmOverloads constructor(
                 return bt.text
             }
         }
-        return "Sad Minotaur -25-\nConventional Tests (8)"
+        return "Fat Minotaur -27-\nAbnormal Environment"
     }
 
     fun setText(text: String) {

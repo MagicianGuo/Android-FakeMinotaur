@@ -23,7 +23,7 @@ object SPUtils {
     }
 
     fun getTextList(): List<BeanText> {
-        val json = mSP.getString(KEY_TEXT_LIST, "[{\"selected\":true,\"text\":\"Sad Minotaur -25-\\nConventional Tests (8)\"},null]")
+        val json = mSP.getString(KEY_TEXT_LIST, "[{\"selected\":true,\"text\":\"Fat Minotaur -27-\\nAbnormal Environment\"},{\"selected\":false,\"text\":\"Sad Minotaur -25-\\nConventional Tests (8)\"},null]")
         val type: Type = object : TypeToken<List<BeanText>>() {}.type
         return mGson.fromJson(json, type)
     }
